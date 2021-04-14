@@ -29,7 +29,7 @@ int main(int argc, char **argv)
         if ((longs[i] = filesize(argv[i+2])) == -1)
         {
             fprintf(stderr,
-            "Program has been destroed: File Empty or Doesn't Exist\n");
+            "Program has been destroyed: File Empty or Doesn't Exist\n");
             exit(EXIT_FAILURE);
         }
     }
@@ -38,14 +38,14 @@ int main(int argc, char **argv)
         if ((files[i] = fopen(argv[i+2], "rb")) == NULL)
         {
             fprintf(stderr,
-            "Program has been destroed: File Empty or Doesn't Exist\n");
+            "Program has been destroyed: File Empty or Doesn't Exist\n");
             exit(EXIT_FAILURE);
         }
     }
     if ((fpw = fopen(argv[1], "wb")) == NULL)
     {
         fprintf(stderr,
-        "Program has been destroed: File Empty or Doesn't Exist\n");
+        "Program has been destroyed: File Empty or Doesn't Exist\n");
         exit(EXIT_FAILURE);
     }
 
@@ -55,6 +55,15 @@ int main(int argc, char **argv)
         {
             ch = getc(files[i]);
             putc(ch, fpw);
+        }
+    }
+    for (int i = 0; i < argc-2; i++)
+    {
+        if ((fclose(files[i])) != 0)
+        {
+            fprintf(stderr,
+            "Program has been destroyed: File wasn't close\n");
+            exit(EXIT_FAILURE);
         }
     }
     return 0;
